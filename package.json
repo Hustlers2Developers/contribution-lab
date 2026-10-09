@@ -1,0 +1,17 @@
+{
+  "name": "devcircle",
+  "version": "0.1.0",
+  "description": "A small developer community app: sign up, browse members. The Hustlers2Developers contribution lab.",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

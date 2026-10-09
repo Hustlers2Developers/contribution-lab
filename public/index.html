@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DevCircle</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <span class="logo">Dev<b>Circle</b></span>
+        <span class="tagline">A small circle of developers who ship.</span>
+      </div>
+    </header>
+
+    <main class="wrap layout">
+      <section class="card">
+        <h1>Join the circle</h1>
+        <p class="muted">Create your profile and show what you work with.</p>
+
+        <form id="signup-form" novalidate>
+          <label>
+            <span>Name</span>
+            <input name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Username</span>
+            <input name="username" autocomplete="username" required placeholder="e.g. ada-lovelace" />
+          </label>
+          <label>
+            <span>Password</span>
+            <input name="password" type="password" autocomplete="new-password" required />
+          </label>
+          <label>
+            <span>Skills</span>
+            <input name="skills" placeholder="JavaScript, Node.js, CSS" />
+            <small class="muted">Comma separated</small>
+          </label>
+          <button type="submit">Create profile</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="members-head">
+          <h2>Members</h2>
+          <span id="member-count" class="muted"></span>
+        </div>
+        <ul id="members" class="members"></ul>
+      </section>
+    </main>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
