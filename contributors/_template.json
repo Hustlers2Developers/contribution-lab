@@ -1,0 +1,15 @@
+{
+  "$schema": "./schema.json",
+  "github": "your-username",
+  "name": "Your Name",
+  "designation": "Student developer",
+  "bio": "I build web apps and love clean UI.",
+  "location": { "city": "Jaipur", "state": "Rajasthan", "country": "India" },
+  "education": { "college": "Your College", "course": "B.Tech", "branch": "CSE", "year": "2" },
+  "goal": "Ship my first open-source PR and land a frontend internship.",
+  "interests": ["Web dev", "Open source"],
+  "techStack": ["JavaScript", "React", "Node.js"],
+  "projects": [{ "name": "My project", "url": "https://github.com/your-username/my-project", "description": "What it does, in one line." }],
+  "links": { "portfolio": "https://you.dev", "linkedin": "https://linkedin.com/in/you", "instagram": "https://instagram.com/you" },
+  "coding": { "leetcode": "you", "codeforces": "you" }
+}

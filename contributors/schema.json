@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GoDevelopers contributor card",
+  "description": "Public contributor profile. File name must be <github-username>.json. Never add email, phone or address.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["github", "name"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "github": { "type": "string", "pattern": "^[A-Za-z\d](?:[A-Za-z\d]|-(?=[A-Za-z\d])){0,38}$" },
+    "name": { "type": "string", "minLength": 2, "maxLength": 80 },
+    "designation": { "type": "string", "maxLength": 80 },
+    "bio": { "type": "string", "maxLength": 400 },
+    "avatarUrl": { "type": "string", "pattern": "^https://" },
+    "location": {
+      "type": "object", "additionalProperties": false,       "properties": { "city": { "type": "string" }, "state": { "type": "string" }, "country": { "type": "string" } }
+    },
+    "education": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "college": { "type": "string" }, "course": { "type": "string" }, "branch": { "type": "string" },
+        "year": { "enum": ["1", "2", "3", "4", "5", "GRADUATED", "WORKING"] }
+      }
+    },
+    "goal": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "interests": { "type": "array", "maxItems": 12, "items": { "type": "string", "maxLength": 30 } },
+    "techStack": { "type": "array", "minItems": 1, "maxItems": 20, "items": { "type": "string", "maxLength": 30 } },
+    "projects": {
+      "type": "array", "maxItems": 6,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["name", "url"],
+        "properties": { "name": { "type": "string", "maxLength": 60 }, "url": { "type": "string", "pattern": "^https://" }, "description": { "type": "string", "maxLength": 200 } }
+      }
+    },
+    "links": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "portfolio": { "type": "string", "pattern": "^https://" },
+        "linkedin": { "type": "string", "pattern": "^https://(www\.)?linkedin\.com/" },
+        "instagram": { "type": "string", "pattern": "^https://(www\.)?instagram\.com/" },
+        "twitter": { "type": "string", "pattern": "^https://(www\.)?(x|twitter)\.com/" }
+      }
+    },
+    "coding": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "leetcode": { "type": "string" }, "codeforces": { "type": "string" }, "codechef": { "type": "string" },
+        "gfg": { "type": "string" }, "hackerrank": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+name: validate-contributors
+
+# Community profiles (contributors/<github-username>.json): schema, privacy and ownership.
+on:
+  pull_request:
+    paths: ['contributors/**']
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Changed contributor files
+        id: changed
+        run: |
+          files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD -- 'contributors/*.json' | tr '\n' ' ')
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+      - name: Validate (schema, privacy, ownership)
+        if: steps.changed.outputs.files != ''
+        env:
+          AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: node scripts/validate-contributors.js --author "$AUTHOR" ${{ steps.changed.outputs.files }}
