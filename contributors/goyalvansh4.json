@@ -1,0 +1,51 @@
+{
+  "$schema": "./schema.json",
+  "github": "goyalvansh4",
+  "name": "Hustler Admin",
+  "designation": "SDE",
+  "bio": "Hustler",
+  "location": {
+    "city": "Saharanpur",
+    "state": "Uttar Pradesh",
+    "country": "India"
+  },
+  "education": {
+    "college": "Quantum University",
+    "course": "B.Tech",
+    "branch": "CSE",
+    "year": "WORKING"
+  },
+  "goal": "Want to showcase my hustle",
+  "interests": [
+    "Open source",
+    "Technical writing",
+    "Startups"
+  ],
+  "techStack": [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "PostgreSQL",
+    "GraphQL",
+    "Git",
+    "AWS",
+    "Docker"
+  ],
+  "projects": [
+    {
+      "name": "My project",
+      "url": "https://github.com/goyalvansh4",
+      "description": "What it does, in one line."
+    }
+  ],
+  "links": {
+    "portfolio": "https://aboutvansh.vercel.app/",
+    "linkedin": "https://www.linkedin.com/in/guptavansh7668/"
+  },
+  "coding": {
+    "leetcode": null,
+    "gfg": null
+  }
+}
