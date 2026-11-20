@@ -27,7 +27,10 @@ export function createApp({ store = new MemberStore() } = {}) {
       if (Object.keys(errors).length) return { status: 422, body: { error: 'Validation failed', errors } };
 
       if (store.emailTaken(input.email.trim())) {
-        return { status: 409, body: { error: 'Email already registered', errors: { email: 'This email is already registered.' } } };
+        return {
+          status: 409,
+          body: { error: 'Email already registered', errors: { email: 'This email is already registered.' } },
+        };
       }
       if (store.usernameTaken(input.username)) {
         return { status: 409, body: { error: 'Username taken', errors: { username: 'This username is taken.' } } };

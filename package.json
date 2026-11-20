@@ -12,7 +12,10 @@
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
     "test": "node --test",
-    "validate:contributors": "node scripts/validate-contributors.js"
+    "format": "npx --yes prettier@3.3.3 --write .",
+    "format:check": "npx --yes prettier@3.3.3 --check .",
+    "validate:contributors": "node scripts/validate-contributors.js",
+    "check": "npm run format:check && npm test && npm run validate:contributors"
   },
   "license": "MIT"
 }

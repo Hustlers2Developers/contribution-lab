@@ -23,12 +23,17 @@ describe('contributor files', () => {
   });
 
   it('only lets you edit your own file', () => {
-    assert.ok(validateContributor(minimal('ada'), 'ada', 'someone-else').some((p) => p.includes('@someone-else can only')));
+    assert.ok(
+      validateContributor(minimal('ada'), 'ada', 'someone-else').some((p) => p.includes('@someone-else can only')),
+    );
     assert.ok(validateContributor(minimal('ada'), 'grace').some((p) => p.includes('same as the file name')));
   });
 
   it('checks links and coding usernames', () => {
-    const problems = validateContributor({ ...minimal('ada'), links: { linkedin: 'https://evil.com/in/ada' }, coding: { gfg: 'has spaces' } }, 'ada');
+    const problems = validateContributor(
+      { ...minimal('ada'), links: { linkedin: 'https://evil.com/in/ada' }, coding: { gfg: 'has spaces' } },
+      'ada',
+    );
     assert.equal(problems.length, 2);
   });
 
@@ -39,7 +44,9 @@ describe('contributor files', () => {
   });
 
   it('every committed profile is valid', () => {
-    const files = readdirSync('contributors').map((f) => `contributors/${f}`).filter(isProfilePath);
+    const files = readdirSync('contributors')
+      .map((f) => `contributors/${f}`)
+      .filter(isProfilePath);
     for (const file of files) {
       assert.deepEqual(validateContributor(JSON.parse(readFileSync(file, 'utf8')), basename(file, '.json')), [], file);
     }

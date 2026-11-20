@@ -1,0 +1,7 @@
+# Profiles are checked by scripts/validate-contributors.js (format-only differences must never fail a first PR).
+contributors/
+# Prose: formatted by hand.
+*.md
+package-lock.json
+node_modules/
+coverage/

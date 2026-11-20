@@ -9,6 +9,19 @@ permissions:
   contents: read
 
 jobs:
+  # Formatting and contributor profiles: once, on the oldest supported Node.
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Formatting (run `npm run format` to fix)
+        run: npm run format:check
+      - name: Contributor profiles
+        run: npm run validate:contributors
+
   test:
     runs-on: ubuntu-latest
     strategy:

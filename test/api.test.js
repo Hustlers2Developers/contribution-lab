@@ -14,7 +14,11 @@ before(async () => {
 after(() => server.close());
 
 const signup = (body) =>
-  fetch(`${base}/api/signup`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  fetch(`${base}/api/signup`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
 
 describe('API', () => {
   it('GET /api/health answers ok', async () => {
@@ -24,7 +28,13 @@ describe('API', () => {
   });
 
   it('POST /api/signup creates a member without leaking secrets', async () => {
-    const response = await signup({ name: 'Grace Hopper', email: 'grace@example.com', username: 'grace', password: 'cobol', skills: ['COBOL'] });
+    const response = await signup({
+      name: 'Grace Hopper',
+      email: 'grace@example.com',
+      username: 'grace',
+      password: 'cobol',
+      skills: ['COBOL'],
+    });
     assert.equal(response.status, 201);
     const { member } = await response.json();
     assert.equal(member.username, 'grace');
@@ -41,7 +51,12 @@ describe('API', () => {
   });
 
   it('POST /api/signup rejects a taken username', async () => {
-    const response = await signup({ name: 'Another Grace', email: 'other@example.com', username: 'grace', password: 'x' });
+    const response = await signup({
+      name: 'Another Grace',
+      email: 'other@example.com',
+      username: 'grace',
+      password: 'x',
+    });
     assert.equal(response.status, 409);
   });
 

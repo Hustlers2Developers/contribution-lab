@@ -49,6 +49,33 @@ GitHub account you applied with, it targets this repository, references your cla
 maintainer, merged into `main`, and changes real code. When every check passes you get a recorded proof and your
 Member invitation.
 
+## Code style and project layout
+
+Everyone writes the same style, so reviews are about behaviour, not whitespace.
+
+- **Formatting is automatic:** `npm run format` (Prettier, pinned, nothing to install). CI fails on unformatted code.
+- **Before every push:** `npm run check` runs formatting, tests and contributor-profile checks, exactly like CI.
+- ES modules, small named functions, no new dependencies unless the issue asks for one.
+- One responsibility per file:
+
+```
+src/
+  server.js       starts the HTTP server
+  app.js          routes (one entry per "METHOD /path") + static files
+  validation.js   one validator per field; returns a message or null
+  store.js        in-memory data; the only place that touches members
+  password.js     hashing
+  http.js         JSON request/response helpers
+public/           the browser app (HTML, CSS, vanilla JS)
+test/             node:test files, one per src/ module
+scripts/          repo tooling (contributor-profile checks)
+contributors/     one public profile per GitHub user
+```
+
+**Adding an endpoint:** add the route in `src/app.js`, keep data access in `src/store.js` and input rules in
+`src/validation.js`, then test it in `test/api.test.js` against a fresh `MemberStore`. Never return `email` or
+`passwordHash`: `store.js` already strips them, so return what it gives you.
+
 ## Commit messages
 
 Use [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`, `test:`, `docs:`, `refactor:` —

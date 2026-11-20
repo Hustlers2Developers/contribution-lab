@@ -2,7 +2,13 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { validateEmail, validateSignup, validateUsername } from '../src/validation.js';
 
-const valid = { name: 'Ada Lovelace', email: 'ada@example.com', username: 'ada-lovelace', password: 'secret', skills: ['JavaScript'] };
+const valid = {
+  name: 'Ada Lovelace',
+  email: 'ada@example.com',
+  username: 'ada-lovelace',
+  password: 'secret',
+  skills: ['JavaScript'],
+};
 
 describe('validateSignup', () => {
   it('accepts a complete signup', () => {

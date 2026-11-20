@@ -32,7 +32,8 @@ export function validatePassword(password) {
 
 export function validateSkills(skills) {
   if (skills === undefined) return null;
-  if (!Array.isArray(skills) || skills.some((skill) => typeof skill !== 'string')) return 'Skills must be a list of strings.';
+  if (!Array.isArray(skills) || skills.some((skill) => typeof skill !== 'string'))
+    return 'Skills must be a list of strings.';
   if (skills.length > MAX_SKILLS) return `Add at most ${MAX_SKILLS} skills.`;
   return null;
 }

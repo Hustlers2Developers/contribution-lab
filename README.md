@@ -28,6 +28,8 @@ cd contribution-lab
 npm start          # http://localhost:3000
 npm test           # runs every test once
 npm run dev        # restarts on file changes
+npm run check      # formatting + tests + profile checks (what CI runs)
+npm run format     # fix formatting
 ```
 
 ## What's inside

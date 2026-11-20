@@ -1,1 +1,9 @@
+# Every change needs a maintainer review.
 * @Hustlers2Developers/hustlers
+
+# Repo infrastructure and the contributor-profile rules: maintainers only.
+/.github/ @Hustlers2Developers/hustlers
+/scripts/ @Hustlers2Developers/hustlers
+/contributors/schema.json @Hustlers2Developers/hustlers
+/contributors/_template.json @Hustlers2Developers/hustlers
+/package.json @Hustlers2Developers/hustlers

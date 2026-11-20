@@ -8,11 +8,37 @@
 const LOGIN = /^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i;
 const HANDLE = /^[A-Za-z0-9_.-]{1,40}$/;
 
-const ALLOWED_KEYS = new Set(['$schema', 'github', 'name', 'designation', 'bio', 'avatarUrl', 'location', 'education', 'goal', 'interests', 'techStack', 'projects', 'links', 'coding']);
+const ALLOWED_KEYS = new Set([
+  '$schema',
+  'github',
+  'name',
+  'designation',
+  'bio',
+  'avatarUrl',
+  'location',
+  'education',
+  'goal',
+  'interests',
+  'techStack',
+  'projects',
+  'links',
+  'coding',
+]);
 const PRIVATE_KEYS = ['email', 'phone', 'address', 'mobile', 'contact'];
 const YEARS = new Set(['1', '2', '3', '4', '5', 'GRADUATED', 'WORKING']);
-const LINK_HOSTS = { portfolio: null, linkedin: ['linkedin.com'], instagram: ['instagram.com'], twitter: ['x.com', 'twitter.com'] };
-const CODING_HOSTS = { leetcode: 'leetcode.com', codeforces: 'codeforces.com', codechef: 'codechef.com', gfg: 'geeksforgeeks.org', hackerrank: 'hackerrank.com' };
+const LINK_HOSTS = {
+  portfolio: null,
+  linkedin: ['linkedin.com'],
+  instagram: ['instagram.com'],
+  twitter: ['x.com', 'twitter.com'],
+};
+const CODING_HOSTS = {
+  leetcode: 'leetcode.com',
+  codeforces: 'codeforces.com',
+  codechef: 'codechef.com',
+  gfg: 'geeksforgeeks.org',
+  hackerrank: 'hackerrank.com',
+};
 const PATH_PREFIXES = new Set(['u', 'user', 'users', 'profile', 'profiles', 'contests']);
 
 const isObject = (v) => Boolean(v) && typeof v === 'object' && !Array.isArray(v);
@@ -59,27 +85,33 @@ export function validateContributor(json, fileLogin, prAuthor) {
   if (!isObject(json)) return ['The file must be a JSON object.'];
 
   for (const key of Object.keys(json)) {
-    if (PRIVATE_KEYS.includes(key.toLowerCase())) problems.push(`"${key}" is private: remove it. Public files must never contain email, phone or address.`);
+    if (PRIVATE_KEYS.includes(key.toLowerCase()))
+      problems.push(`"${key}" is private: remove it. Public files must never contain email, phone or address.`);
     else if (!ALLOWED_KEYS.has(key)) problems.push(`Unknown field "${key}".`);
   }
 
   // Identity: one file per person, edited only by that person.
   if (!LOGIN.test(fileLogin)) problems.push(`File name "${fileLogin}.json" must be your GitHub username.`);
-  if (str(json.github).toLowerCase() !== fileLogin.toLowerCase()) problems.push(`"github" must be "${fileLogin}" (same as the file name).`);
-  if (prAuthor && prAuthor.toLowerCase() !== fileLogin.toLowerCase()) problems.push(`@${prAuthor} can only add or edit contributors/${prAuthor}.json.`);
+  if (str(json.github).toLowerCase() !== fileLogin.toLowerCase())
+    problems.push(`"github" must be "${fileLogin}" (same as the file name).`);
+  if (prAuthor && prAuthor.toLowerCase() !== fileLogin.toLowerCase())
+    problems.push(`@${prAuthor} can only add or edit contributors/${prAuthor}.json.`);
 
   // Only a name is required; everything else is optional but must be well-formed.
   if (str(json.name).length < 2) problems.push('name: Add your name.');
-  if (json.avatarUrl !== undefined && !isHttpsUrl(str(json.avatarUrl))) problems.push('avatarUrl: Use an https:// image link.');
+  if (json.avatarUrl !== undefined && !isHttpsUrl(str(json.avatarUrl)))
+    problems.push('avatarUrl: Use an https:// image link.');
 
   if (json.education !== undefined) {
     if (!isObject(json.education)) problems.push('education must be an object.');
-    else if (json.education.year !== undefined && !YEARS.has(String(json.education.year))) problems.push('education.year: Use 1–5, GRADUATED or WORKING.');
+    else if (json.education.year !== undefined && !YEARS.has(String(json.education.year)))
+      problems.push('education.year: Use 1–5, GRADUATED or WORKING.');
   }
   if (json.location !== undefined && !isObject(json.location)) problems.push('location must be an object.');
 
   for (const key of ['interests', 'techStack']) {
-    if (json[key] !== undefined && (!Array.isArray(json[key]) || json[key].some((x) => typeof x !== 'string'))) problems.push(`${key} must be a list of strings.`);
+    if (json[key] !== undefined && (!Array.isArray(json[key]) || json[key].some((x) => typeof x !== 'string')))
+      problems.push(`${key} must be a list of strings.`);
   }
 
   if (json.links !== undefined) {
@@ -88,7 +120,11 @@ export function validateContributor(json, fileLogin, prAuthor) {
       for (const [key, value] of Object.entries(json.links)) {
         if (!(key in LINK_HOSTS)) problems.push(`links.${key}: unknown link.`);
         else if (value && !isHttpsUrl(str(value), LINK_HOSTS[key] ?? undefined)) {
-          problems.push(LINK_HOSTS[key] ? `links.${key}: Paste your full https://${LINK_HOSTS[key][0]}/… link.` : `links.${key}: Use a full https:// link.`);
+          problems.push(
+            LINK_HOSTS[key]
+              ? `links.${key}: Paste your full https://${LINK_HOSTS[key][0]}/… link.`
+              : `links.${key}: Use a full https:// link.`,
+          );
         }
       }
   }
@@ -98,7 +134,8 @@ export function validateContributor(json, fileLogin, prAuthor) {
     else
       for (const [key, value] of Object.entries(json.coding)) {
         if (!(key in CODING_HOSTS)) problems.push(`coding.${key}: unknown platform.`);
-        else if (value && !codingHandle(key, value)) problems.push(`coding.${key}: Use your username or your profile link.`);
+        else if (value && !codingHandle(key, value))
+          problems.push(`coding.${key}: Use your username or your profile link.`);
       }
   }
 
@@ -117,4 +154,5 @@ export function validateContributor(json, fileLogin, prAuthor) {
 }
 
 /** contributors/<login>.json paths that are profiles (not the template or schema). */
-export const isProfilePath = (path) => /^contributors\/[^/_][^/]*\.json$/.test(path.replace(/\\/g, '/')) && !path.endsWith('/schema.json');
+export const isProfilePath = (path) =>
+  /^contributors\/[^/_][^/]*\.json$/.test(path.replace(/\\/g, '/')) && !path.endsWith('/schema.json');
