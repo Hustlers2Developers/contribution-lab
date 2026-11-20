@@ -53,3 +53,16 @@ Member invitation.
 
 Use [Conventional Commits](https://www.conventionalcommits.org): `feat:`, `fix:`, `test:`, `docs:`, `refactor:` —
 and add the issue number, e.g. `fix: return 400 for malformed JSON (#45)`.
+
+## Community tasks (no claim needed)
+
+Small, guided tasks from [contribute.godevelopers.space/community/tasks](https://contribute.godevelopers.space/community/tasks)
+work differently from `contribute-task` issues:
+
+1. Fork this repository (no collaborator access needed) and branch: `git checkout -b task/<slug>`.
+2. Follow the task's guide. Run `npm test` before you push.
+3. Open a PR whose **title** contains the task tag, e.g. `Add a footer link [task:footer-link]`.
+4. When a maintainer merges it, the XP lands on your Contributor Card automatically (once per task).
+
+Your profile file goes in [`contributors/`](contributors/README.md); never put email, phone or address there.
+

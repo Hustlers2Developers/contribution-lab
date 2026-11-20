@@ -6,6 +6,18 @@ Ship one reviewed, merged, verified pull request here and you earn **Member** ac
 > Start at **[contribute.godevelopers.space](https://contribute.godevelopers.space)** — apply with GitHub,
 > get approved, then claim a task. Read [CONTRIBUTING.md](CONTRIBUTING.md) before your first PR.
 
+## Two ways to contribute
+
+| | **Member path** | **Community tasks** |
+|---|---|---|
+| What | Issues labelled `contribute-task` | Small guided tasks at [/community/tasks](https://contribute.godevelopers.space/community/tasks) |
+| Access | Apply, get approved, claim one issue | Anyone: fork and open a PR |
+| PR | Branch `task-<issue>-…`, description `Closes #<issue>` | Title contains `[task:<slug>]` |
+| Reward | Verified proof → **Member** invitation | XP, badges and the leaderboard on your Contributor Card |
+
+You don't have to become a Member to contribute, and Members can pick community tasks too.
+Your public profile lives in [`contributors/`](contributors/README.md).
+
 ## Run it
 
 Needs **Node.js 20+**. There are no dependencies to install.
