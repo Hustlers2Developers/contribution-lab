@@ -2,7 +2,7 @@ blank_issues_enabled: true
 contact_links:
   - name: Small guided tasks (anyone, no claim needed)
     url: https://contribute.godevelopers.space/community/tasks
-    about: Fork, follow the guide, open a PR with the [task:<slug>] tag.
+    about: Pick a community-task issue (or a repeatable task), follow its guide, open a PR.
   - name: Report a bug or suggest an idea
     url: https://contribute.godevelopers.space/community/arena/new
     about: The Arena earns XP for accepted reports.

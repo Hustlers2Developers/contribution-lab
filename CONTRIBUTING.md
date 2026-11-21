@@ -83,13 +83,22 @@ and add the issue number, e.g. `fix: return 400 for malformed JSON (#45)`.
 
 ## Community tasks (no claim needed)
 
-Small, guided tasks from [contribute.godevelopers.space/community/tasks](https://contribute.godevelopers.space/community/tasks)
-work differently from `contribute-task` issues:
+Small, guided tasks work differently from `contribute-task` issues. Every one has a full guide on
+[contribute.godevelopers.space/community/tasks](https://contribute.godevelopers.space/community/tasks). There are two kinds:
 
-1. Fork this repository (no collaborator access needed) and branch: `git checkout -b task/<slug>`.
-2. Follow the task's guide. Run `npm test` before you push.
-3. Open a PR whose **title** contains the task tag, e.g. `Add a footer link [task:footer-link]`.
-4. When a maintainer merges it, the XP lands on your Contributor Card automatically (once per task).
+| | **`community-task` issues** | **Repeatable tasks** |
+|---|---|---|
+| Example | "Add a dark theme" | "Add your profile as a file", "Fix a typo" |
+| Who | The first merged PR completes it | Everyone can do it (XP once per person) |
+| PR | Description says `Closes #<issue>` | Title contains `[task:<slug>]` |
+
+1. Fork this repository (no collaborator access needed) and branch: `git checkout -b task/<short-name>`.
+2. Follow the task's guide. Run `npm run check` before you push.
+3. Open the PR as shown above.
+4. When a maintainer merges it, the XP lands on your Contributor Card automatically.
+
+Maintainers: open new ones with the **Community task** issue template. The board picks them up by itself,
+and an issue never carries both `community-task` and `contribute-task`.
 
 Your profile file goes in [`contributors/`](contributors/README.md); never put email, phone or address there.
 
