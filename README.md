@@ -10,9 +10,9 @@ Ship one reviewed, merged, verified pull request here and you earn **Member** ac
 
 | | **Member path** | **Community tasks** |
 |---|---|---|
-| What | Issues labelled `contribute-task` | Small guided tasks at [/community/tasks](https://contribute.godevelopers.space/community/tasks) |
+| What | Issues labelled `contribute-task` | Issues labelled `community-task`, plus repeatable tasks, all at [/community/tasks](https://contribute.godevelopers.space/community/tasks) |
 | Access | Apply, get approved, claim one issue | Anyone: fork and open a PR |
-| PR | Branch `task-<issue>-…`, description `Closes #<issue>` | Title contains `[task:<slug>]` |
+| PR | Branch `task-<issue>-…`, description `Closes #<issue>` | Description `Closes #<issue>` (repeatable tasks: title contains `[task:<slug>]`) |
 | Reward | Verified proof → **Member** invitation | XP, badges and the leaderboard on your Contributor Card |
 
 You don't have to become a Member to contribute, and Members can pick community tasks too.
